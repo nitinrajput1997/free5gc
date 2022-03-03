@@ -60,19 +60,25 @@ kubectl get pods -A
 
 
 ### create namespace 
+```bash
 kubectl create namespace free5gc
+```
 
 ### add helm repository
+```bash
 helm repo add towards5gs 'https://raw.githubusercontent.com/Orange-OpenSource/towards5gs-helm/main/repo/'
 helm repo update
+```
 
 ### view repository list
+```bash
 helm repo list
-
+```
 
 ### view available charts
+```bash
 helm search repo
-
+```
 
 ## deploy helm
 ### -n free5gc(namespace) free5gc-v1(name of the helm deployment) towards5gs/free5gc(chart name)
