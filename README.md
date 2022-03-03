@@ -43,3 +43,15 @@ chmod 700 get_helm.sh
 ```bash
 helm list -A
 ```
+
+### install multus-cni
+```bash
+git clone https://github.com/k8snetworkplumbingwg/multus-cni
+cd multus-cni
+cat ./deployments/multus-daemonset-thick-plugin.yml | kubectl apply -f -
+```
+
+### verify installation
+```bash
+kubectl get pods -A
+```
