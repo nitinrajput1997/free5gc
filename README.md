@@ -56,17 +56,17 @@ cat ./deployments/multus-daemonset-thick-plugin.yml | kubectl apply -f -
 kubectl get pods -A
 ```
 
-Deploy Helm Chart
+## Deploy Helm Chart
 
 
-# create namespace 
+### create namespace 
 kubectl create namespace free5gc
 
-# add helm repository
+### add helm repository
 helm repo add towards5gs 'https://raw.githubusercontent.com/Orange-OpenSource/towards5gs-helm/main/repo/'
 helm repo update
 
-# view repository list
+### view repository list
 helm repo list
 
 
