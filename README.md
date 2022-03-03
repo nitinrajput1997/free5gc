@@ -70,10 +70,8 @@ helm repo update
 helm repo list
 
 
-# view available charts
+### view available charts
 helm search repo
-
----
 
 
 ## deploy helm
