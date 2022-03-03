@@ -102,3 +102,49 @@ kubectl get svc -n free5gc
 kubectl port-forward --namespace free5gc svc/webui-service 5000:5000
 ssh -L localhost:5000:localhost:5000 ubuntu@192.168.5.95
 ```
+
+## Service Monitoring
+
+### add helm repo
+```bash
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
+```
+
+### view charts
+```bash
+helm search repo prometheus-community
+```
+
+### create k8s namespace
+```bash
+kubectl create namespace prometheus
+```
+
+### deploy chart
+```bash
+helm install prometheus prometheus-community/kube-prometheus-stack -n prometheus
+```
+
+### pods
+```bash
+kubectl get pods -n prometheus
+```
+
+### grafana runs on ClusterIP 80
+
+#### change svc clusterIP to NodePort
+```bash
+kubectl get svc -n prometheus | grep grafana
+```
+
+### port forward
+```bash
+kubectl port-forward -n prometheus prometheus-grafana-8568977b76-mh9k5 3000
+ssh -L localhost:3000:localhost:3000 ubuntu@192.168.5.95
+```
+
+### the default credentials(username/password) are admin/prom-operator credentials are base64 encoded
+```bash
+kubectl get secret --namespace prometheus prometheus-grafana -o yaml
+```
