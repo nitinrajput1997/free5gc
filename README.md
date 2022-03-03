@@ -55,3 +55,46 @@ cat ./deployments/multus-daemonset-thick-plugin.yml | kubectl apply -f -
 ```bash
 kubectl get pods -A
 ```
+
+Deploy Helm Chart
+
+
+# create namespace 
+kubectl create namespace free5gc
+
+# add helm repository
+helm repo add towards5gs 'https://raw.githubusercontent.com/Orange-OpenSource/towards5gs-helm/main/repo/'
+helm repo update
+
+# view repository list
+helm repo list
+
+
+# view available charts
+helm search repo
+
+---
+
+
+## deploy helm
+### -n free5gc(namespace) free5gc-v1(name of the helm deployment) towards5gs/free5gc(chart name)
+```bash
+helm -n free5gc install free5gc-v1 towards5gs/free5gc
+```
+
+### verify helm deployment
+```bash
+kubectl get pods -n free5gc
+```
+
+
+### list services
+```bash
+kubectl get svc -n free5gc
+```
+
+### kubernets port forward to access the NodePort service
+```bash
+kubectl port-forward --namespace free5gc svc/webui-service 5000:5000
+ssh -L localhost:5000:localhost:5000 ubuntu@192.168.5.95
+```
