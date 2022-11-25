@@ -18,6 +18,8 @@ sudo chmod +x /usr/local/bin/minikube
 ### use calico as cni plugin
 ```bash
 minikube start --driver=docker --cpus=4 --memory=8g --disk-size=20g --network-plugin=cni --cni=calico
+OR
+minikube start --driver=docker --cpus=4 --memory=8g --disk-size=20g --cni=calico
 ```
 
 ### verify minikube installation
